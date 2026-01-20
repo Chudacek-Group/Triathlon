@@ -12,10 +12,40 @@
 }
 *{box-sizing:border-box}
 body{
-  margin:0; padding:12px 12px 90px;
+  margin:0; padding:0;
   background:var(--bg); color:var(--txt);
   font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 }
+
+/* --- TABS --- */
+.tabs{
+  display:flex;
+  background:#111;
+  border-bottom:1px solid #222;
+}
+.tab{
+  flex:1;
+  padding:12px;
+  text-align:center;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--muted);
+}
+.tab.active{
+  color:var(--accent);
+  border-bottom:2px solid var(--accent);
+}
+
+/* --- PAGES --- */
+.page{
+  display:none;
+  padding:12px 12px 90px;
+}
+.page.active{
+  display:block;
+}
+
+/* --- ORIGINAL STYLES --- */
 h1{margin:4px 0 10px;font-size:1.3rem}
 
 .card{
@@ -52,6 +82,17 @@ input[type=range]{width:100%}
 </head>
 
 <body>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" data-page="race">Race</div>
+  <div class="tab" data-page="bikeplus">Bike+</div>
+  <div class="tab" data-page="runplus">Run+</div>
+  <div class="tab" data-page="settings">Settings</div>
+</div>
+
+<!-- PAGE 1: RACE -->
+<div id="race" class="page active">
 
 <h1>Triathlon Pro</h1>
 
@@ -127,31 +168,57 @@ input[type=range]{width:100%}
 <div class="time" id="runTime"></div>
 </div>
 
-<!-- BIKE+ (nová karta) -->
-<div class="card">
-  <h3 style="margin:0 0 6px;font-size:1rem;color:var(--muted)">Bike+</h3>
-  <div style="color:var(--muted);font-size:.8rem">
-    (zatím prázdné – připraveno pro další funkce)
-  </div>
-</div>
-
-<!-- RUN+ (nová karta) -->
-<div class="card">
-  <h3 style="margin:0 0 6px;font-size:1rem;color:var(--muted)">Run+</h3>
-  <div style="color:var(--muted);font-size:.8rem">
-    (zatím prázdné – připraveno pro další funkce)
-  </div>
-</div>
-
 <div class="total">
 <div>Celkem</div>
 <b id="total"></b>
 </div>
 
+</div> <!-- end RACE page -->
+
+<!-- PAGE 2: BIKE+ -->
+<div id="bikeplus" class="page">
+  <h1>Bike+</h1>
+  <div class="card">
+    <div style="color:var(--muted);font-size:.9rem">
+      Připraveno pro rozšířené cyklistické metriky (wattage, IF, TSS, výškové metry…)
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3: RUN+ -->
+<div id="runplus" class="page">
+  <h1>Run+</h1>
+  <div class="card">
+    <div style="color:var(--muted);font-size:.9rem">
+      Připraveno pro pokročilé běžecké metriky (tepovka, zóny, kadence…)
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: SETTINGS -->
+<div id="settings" class="page">
+  <h1>Nastavení</h1>
+  <div class="card">
+    <div style="color:var(--muted);font-size:.9rem">
+      Sem můžeš dát export, jednotky, barvy, PWA instalaci…
+    </div>
+  </div>
+</div>
+
 <script>
+/* --- TAB SWITCHING --- */
+document.querySelectorAll(".tab").forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.page).classList.add("active");
+  });
+});
+
+/* --- ORIGINAL JS --- */
 const el=id=>document.getElementById(id);
 
-/* pomocné */
 function secToMMSS(s){
   return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")
 }
@@ -167,7 +234,6 @@ function fmt(m){
   return `${h}:${String(mi).padStart(2,"0")}:${String(s).padStart(2,"0")}`
 }
 
-/* výpočet */
 function calc(){
   const swim=(el("swimDist").value/100)*(el("swimSlider").value/60);
   const bike=(el("bikeDist").value/el("bikeSlider").value)*60;
@@ -186,7 +252,6 @@ function calc(){
   el("total").textContent    = fmt(toT2 + run);
 }
 
-/* synchronizace */
 ["swim","run"].forEach(d=>{
   el(d+"Slider").addEventListener("input",()=>{
     el(d+"Pace").value=secToMMSS(+el(d+"Slider").value);
@@ -216,7 +281,6 @@ el("bikeSpeed").addEventListener("input",()=>{
   });
 });
 
-/* přepínače */
 el("halfBtn").onclick=()=>{
   el("swimDist").value=1900;
   el("bikeDist").value=90;
