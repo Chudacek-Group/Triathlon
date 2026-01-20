@@ -1,10 +1,16 @@
-const CACHE = "triathlon-pro-v1";
+const CACHE = "triathlon-pro-v2";
 
 const ASSETS = [
   "./",
   "./index.html",
+  "./style.css",
   "./manifest.json",
   "./sw.js",
+  "./js/app.js",
+  "./pages/race.html",
+  "./pages/bikeplus.html",
+  "./pages/runplus.html",
+  "./pages/settings.html",
   "./icons/icon-192.png",
   "./icons/icon-512.png"
 ];
