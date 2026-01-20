@@ -1,4 +1,4 @@
-const CACHE = "triathlon-pro-v2";
+const CACHE = "triathlon-pro-v4";
 
 const ASSETS = [
   "./",
