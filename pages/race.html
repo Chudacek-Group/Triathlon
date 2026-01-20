@@ -1,0 +1,61 @@
+<h1>Triathlon Pro</h1>
+
+<div class="row" style="margin-bottom:8px">
+  <button id="halfBtn" class="btn">½ IM</button>
+  <button id="fullBtn" class="btn">Full IM</button>
+</div>
+
+<!-- PLAVÁNÍ -->
+<div class="card">
+  <div class="row">
+    <div>
+      <label>Plavání (m)</label>
+      <input id="swimDist" type="number" value="1900">
+    </div>
+    <div>
+      <label>Tempo /100 m</label>
+      <input id="swimPace" type="text" value="1:45">
+      <input id="swimSlider" type="range" min="60" max="180" step="1" value="105">
+    </div>
+  </div>
+  <div class="time" id="swimTime"></div>
+</div>
+
+<!-- T1 -->
+<div class="card">
+  <label>Depo T1 (mm:ss)</label>
+  <input id="t1Text" type="text" value="03:00">
+  <input id="t1Slider" type="range" min="0" max="600" step="5" value="180">
+  <div class="time" id="t1Time"></div>
+</div>
+
+<!-- KOLO -->
+<div class="card">
+  <div class="row">
+    <div>
+      <label>Kolo (km)</label>
+      <input id="bikeDist" type="number" value="90">
+    </div>
+    <div>
+      <label>Rychlost (km/h)</label>
+      <input id="bikeSpeed" type="number" value="32">
+      <input id="bikeSlider" type="range" min="20" max="50" step="0.5" value="32">
+    </div>
+  </div>
+  <div class="time">
+    Kolo: <span id="bikeTime"></span><br>
+    Do T2: <b id="toT2Time"></b>
+  </div>
+</div>
+
+<!-- T2 -->
+<div class="card">
+  <label>Depo T2 (mm:ss)</label>
+  <input id="t2Text" type="text" value="02:30">
+  <input id="t2Slider" type="range" min="0" max="600" step="5" value="150">
+  <div class="time" id="t2Time"></div>
+</div>
+
+<!-- BĚH -->
+<div class="card">
+  <div class="row">
