@@ -4,7 +4,9 @@ function loadPage(name) {
     .then(r => r.text())
     .then(html => {
       document.getElementById("pageContainer").innerHTML = html;
+
       if (name === "race") initRaceLogic();
+      if (name === "runplus") initRunLogic();
     });
 }
 
@@ -19,6 +21,7 @@ document.querySelectorAll(".tab").forEach(tab => {
 
 // Load default page
 loadPage("race");
+
 
 // --- ORIGINAL RACE LOGIC ---
 function initRaceLogic() {
@@ -100,4 +103,53 @@ function initRaceLogic() {
   }
 
   calc();
+}
+
+
+
+// --- RUN+ LOGIC ---
+function initRunLogic() {
+  const el = id => document.getElementById(id);
+
+  function paceToSeconds(pace) {
+    const [m, s] = pace.split(":").map(Number);
+    return m * 60 + s;
+  }
+
+  function secondsToTime(sec) {
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = sec % 60;
+
+    if (h > 0) return `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+    return `${m}:${String(s).padStart(2,"0")}`;
+  }
+
+  function updateRun() {
+    const paceSec = paceToSeconds(el("runPace").value);
+    el("runSlider").value = paceSec;
+
+    // km/h
+    const speed = 3600 / paceSec;
+    el("runSpeed").textContent = speed.toFixed(1) + " km/h";
+
+    // Výsledky
+    el("t5").textContent  = secondsToTime(paceSec * 5);
+    el("t10").textContent = secondsToTime(paceSec * 10);
+    el("t21").textContent = secondsToTime(paceSec * 21.097);
+    el("t42").textContent = secondsToTime(paceSec * 42.195);
+  }
+
+  function updateSlider() {
+    const sec = Number(el("runSlider").value);
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    el("runPace").value = `${m}:${String(s).padStart(2,"0")}`;
+    updateRun();
+  }
+
+  el("runPace").addEventListener("input", updateRun);
+  el("runSlider").addEventListener("input", updateSlider);
+
+  updateRun();
 }
