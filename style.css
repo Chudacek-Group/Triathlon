@@ -122,7 +122,7 @@ input[type=range] {
   color: var(--accent);
   font-size: 1.4rem;
 }
-..run-layout {
+.run-layout {
   display: flex;
   justify-content: space-between;
   gap: 20px;
