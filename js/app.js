@@ -21,6 +21,9 @@ document.querySelectorAll(".tab").forEach(tab => {
 
 // Load default page
 loadPage("runplus");
+document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+document.querySelector('.tab[data-page="runplus"]').classList.add("active");
+
 
 
 // --- ORIGINAL RACE LOGIC ---
