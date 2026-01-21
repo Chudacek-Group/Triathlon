@@ -20,7 +20,7 @@ document.querySelectorAll(".tab").forEach(tab => {
 });
 
 // Load default page
-loadPage("race");
+loadPage("runplus");
 
 
 // --- ORIGINAL RACE LOGIC ---
