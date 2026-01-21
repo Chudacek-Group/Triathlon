@@ -109,6 +109,7 @@ function initRaceLogic() {
 
 // --- RUN+ LOGIC ---
 function initRunLogic() {
+	console.log("Run+ logic loaded");
   const el = id => document.getElementById(id);
 
   function paceToSeconds(pace) {
