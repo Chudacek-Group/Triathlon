@@ -122,3 +122,43 @@ input[type=range] {
   color: var(--accent);
   font-size: 1.4rem;
 }
+.run-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.run-left {
+  flex: 1;
+}
+
+.run-right {
+  flex: 1;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Vertikální slider */
+.vslider-wrap {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.vslider {
+  transform: rotate(-90deg);
+  width: 180px;
+  height: 30px;
+}
+
+/* Rychlost */
+.speed-box {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-top: 8px;
+  text-align: right;
+}

@@ -1,22 +1,9 @@
 <h1>Run+</h1>
 
-<div class="card">
-  <div class="row">
-    <div>
-      <label>Tempo / km</label>
-      <input id="runPace" type="text" value="5:00">
-      <input id="runSlider" type="range" min="180" max="420" step="5" value="300">
-    </div>
-
-    <div style="font-size:.9rem;color:var(--muted);padding-left:12px">
-      <div>Rychlost</div>
-      <b id="runSpeed">12.0 km/h</b>
-    </div>
-  </div>
-</div>
-
-<div class="card">
-  <div class="time">
+<div class="card run-layout">
+  
+  <!-- LEVÁ STRANA – výsledky -->
+  <div class="run-left time">
     <div>100 m: <b id="t0_1"></b></div>
     <div>400 m: <b id="t0_4"></b></div>
     <div>800 m: <b id="t0_8"></b></div>
@@ -27,6 +14,20 @@
     <div>1/2 maraton: <b id="t21"></b></div>
     <div>Maraton: <b id="t42"></b></div>
   </div>
+
+  <!-- PRAVÁ STRANA – tempo + vertikální slider -->
+  <div class="run-right">
+    <label>Tempo / km</label>
+    <input id="runPace" type="text" value="5:00">
+
+    <div class="vslider-wrap">
+      <input id="runSlider" type="range" min="180" max="420" step="5" value="300" class="vslider">
+    </div>
+
+    <div class="speed-box">
+      <div>Rychlost</div>
+      <b id="runSpeed">12.0 km/h</b>
+    </div>
+  </div>
+
 </div>
-
-
