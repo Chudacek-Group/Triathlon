@@ -142,8 +142,8 @@ function initRunLogic() {
     el("t0_1").textContent = secondsToTime(paceSec * 0.1);
     el("t0_4").textContent = secondsToTime(paceSec * 0.4);
     el("t0_8").textContent = secondsToTime(paceSec * 0.8);
+	el("t1").textContent = secondsToTime(paceSec * 1);
     el("t3").textContent   = secondsToTime(paceSec * 3);
-
     el("t5").textContent  = secondsToTime(paceSec * 5);
     el("t10").textContent = secondsToTime(paceSec * 10);
     el("t21").textContent = secondsToTime(paceSec * 21.097);
