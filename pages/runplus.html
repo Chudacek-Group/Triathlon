@@ -1,6 +1,26 @@
 <h1>Run+</h1>
+
 <div class="card">
-  <div style="color:var(--muted);font-size:.9rem">
-    Připraveno pro pokročilé běžecké metriky.
+  <div class="row">
+    <div>
+      <label>Tempo / km</label>
+      <input id="runPace" type="text" value="5:00">
+      <input id="runSlider" type="range" min="180" max="420" step="5" value="300">
+    </div>
+
+    <div style="font-size:.9rem;color:var(--muted);padding-left:12px">
+      <div>Rychlost</div>
+      <b id="runSpeed">12.0 km/h</b>
+    </div>
   </div>
 </div>
+
+<div class="card">
+  <div class="time">
+    <div>5 km: <b id="t5"></b></div>
+    <div>10 km: <b id="t10"></b></div>
+    <div>1/2 maraton: <b id="t21"></b></div>
+    <div>Maraton: <b id="t42"></b></div>
+  </div>
+</div>
+
