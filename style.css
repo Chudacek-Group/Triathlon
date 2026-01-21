@@ -159,8 +159,11 @@ input[type=range] {
 .speed-box {
   font-size: .9rem;
   color: var(--muted);
-  margin-top: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
   text-align: right;
+}
+
 }
 .pace-display {
   background: none;
