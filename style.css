@@ -152,7 +152,7 @@ input[type=range] {
 .vslider {
   transform: rotate(-90deg);
   width: 180px;
-  height: 40px;
+  height: 80px;
 }
 
 /* Tempo – stejný styl jako celkový čas v Race */
