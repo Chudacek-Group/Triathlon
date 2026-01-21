@@ -156,17 +156,18 @@ input[type=range] {
 }
 
 /* Tempo – stejný styl jako celkový čas v Race */
-.pace-display {
-  background: none;
-  border: 0;
-  color: var(--accent);
-  font-family: monospace;
-  font-size: 1.4rem;
-  text-align: right;
-  padding: 0;
-  margin: 0;
-  width: 100%;
+input.pace-display {
+  background: none !important;
+  border: 0 !important;
+  color: var(--accent) !important;
+  font-family: monospace !important;
+  font-size: 1.4rem !important;
+  text-align: right !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
 }
+
 
 /* Rychlost */
 .speed-box {
