@@ -154,6 +154,25 @@ input[type=range] {
   width: 180px;
   height: 80px;
 }
+/* Tlustá dráha slideru */
+.vslider::-webkit-slider-runnable-track {
+  height: 20px;
+  background: #444;
+  border-radius: 10px;
+}
+
+/* Velké kolečko */
+.vslider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -4px; /* zarovnání na střed dráhy */
+}
+
 
 /* Tempo – stejný styl jako celkový čas v Race */
 input.pace-display {
