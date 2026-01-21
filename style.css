@@ -162,3 +162,14 @@ input[type=range] {
   margin-top: 8px;
   text-align: right;
 }
+.pace-display {
+  background: none;
+  border: 0;
+  color: var(--accent);
+  font-family: monospace;
+  font-size: 1.4rem;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
