@@ -109,7 +109,7 @@ function initRaceLogic() {
 
 // --- RUN+ LOGIC ---
 function initRunLogic() {
-	console.log("Run+ logic loaded");
+  console.log("Run+ logic loaded");
   const el = id => document.getElementById(id);
 
   function paceToSeconds(pace) {
@@ -117,43 +117,34 @@ function initRunLogic() {
     return m * 60 + s;
   }
 
-
-  
-  
   function secondsToTime(sec) {
-	const h = Math.floor(sec / 3600);
-	const m = Math.floor((sec % 3600) / 60);
-	const s = Math.floor(sec % 60);
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = Math.floor(sec % 60);
 
-  if (h > 0) {
-    return `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+    if (h > 0) {
+      return `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+    }
+
+    return `${m}:${String(s).padStart(2,"0")}`;
   }
-
-  return `${m}:${String(s).padStart(2,"0")}`;
-}
-
-}
-
 
   function updateRun() {
     const paceSec = paceToSeconds(el("runPace").value);
     el("runSlider").value = paceSec;
 
-    // km/h
     const speed = 3600 / paceSec;
     el("runSpeed").textContent = speed.toFixed(1) + " km/h";
 
-  	// Výsledky
-	el("t0_1").textContent = secondsToTime(paceSec * 0.1);
-	el("t0_4").textContent = secondsToTime(paceSec * 0.4);
-	el("t0_8").textContent = secondsToTime(paceSec * 0.8);
-	el("t3").textContent   = secondsToTime(paceSec * 3);
+    el("t0_1").textContent = secondsToTime(paceSec * 0.1);
+    el("t0_4").textContent = secondsToTime(paceSec * 0.4);
+    el("t0_8").textContent = secondsToTime(paceSec * 0.8);
+    el("t3").textContent   = secondsToTime(paceSec * 3);
 
-	el("t5").textContent  = secondsToTime(paceSec * 5);
-	el("t10").textContent = secondsToTime(paceSec * 10);
-	el("t21").textContent = secondsToTime(paceSec * 21.097);
-	el("t42").textContent = secondsToTime(paceSec * 42.195);
-
+    el("t5").textContent  = secondsToTime(paceSec * 5);
+    el("t10").textContent = secondsToTime(paceSec * 10);
+    el("t21").textContent = secondsToTime(paceSec * 21.097);
+    el("t42").textContent = secondsToTime(paceSec * 42.195);
   }
 
   function updateSlider() {
