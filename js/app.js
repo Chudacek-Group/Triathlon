@@ -7,7 +7,7 @@ function loadPage(name) {
 
       if (name === "race") initRaceLogic();
       if (name === "runplus") initRunLogic();
-	  if (name === "bikeplus") initBikePlusLogic();
+      if (name === "bikeplus") initBikePlusLogic();
     });
 }
 
@@ -27,7 +27,7 @@ document.querySelector('.tab[data-page="runplus"]').classList.add("active");
 
 
 
-// --- ORIGINAL RACE LOGIC ---
+// --- RACE LOGIC ---
 function initRaceLogic() {
   const el = id => document.getElementById(id);
 
@@ -113,7 +113,6 @@ function initRaceLogic() {
 
 // --- RUN+ LOGIC ---
 function initRunLogic() {
-  console.log("Run+ logic loaded");
   const el = id => document.getElementById(id);
 
   function paceToSeconds(pace) {
@@ -143,12 +142,12 @@ function initRunLogic() {
     el("t0_1").textContent = secondsToTime(paceSec * 0.1);
     el("t0_4").textContent = secondsToTime(paceSec * 0.4);
     el("t0_8").textContent = secondsToTime(paceSec * 0.8);
-	el("t1").textContent = secondsToTime(paceSec * 1);
-    el("t3").textContent = secondsToTime(paceSec * 3);
-    el("t5").textContent = secondsToTime(paceSec * 5);
-    el("t10").textContent = secondsToTime(paceSec * 10);
-    el("t21").textContent = secondsToTime(paceSec * 21.097);
-    el("t42").textContent = secondsToTime(paceSec * 42.195);
+    el("t1").textContent   = secondsToTime(paceSec * 1);
+    el("t3").textContent   = secondsToTime(paceSec * 3);
+    el("t5").textContent   = secondsToTime(paceSec * 5);
+    el("t10").textContent  = secondsToTime(paceSec * 10);
+    el("t21").textContent  = secondsToTime(paceSec * 21.097);
+    el("t42").textContent  = secondsToTime(paceSec * 42.195);
   }
 
   function updateSlider() {
@@ -163,9 +162,11 @@ function initRunLogic() {
   el("runSlider").addEventListener("input", updateSlider);
 
   updateRun();
-  
 }
 
+
+
+// --- BIKE+ LOGIC ---
 function initBikePlusLogic() {
   const el = id => document.getElementById(id);
 
@@ -176,19 +177,12 @@ function initBikePlusLogic() {
     return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   }
 
-  function bikePaceFromSpeed(speed) {
-    const sec = 3600 / speed;
-    const m = Math.floor(sec / 60);
-    const s = Math.round(sec % 60);
-    return `${m}:${String(s).padStart(2,'0')} / km`;
-  }
-
   function updateBikePlus() {
     const speed = parseFloat(el("bikePlusSpeed").value);
+    if (!speed) return;
 
-    el("b90").textContent = bikeFormatTime(90 / speed);
+    el("b90").textContent  = bikeFormatTime(90 / speed);
     el("b180").textContent = bikeFormatTime(180 / speed);
-    el("bikePlusPace").textContent = bikePaceFromSpeed(speed);
   }
 
   el("bikePlusSpeed").addEventListener("input", e => {
