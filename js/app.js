@@ -163,3 +163,32 @@ function initRunLogic() {
 
   updateRun();
 }
+function formatTime(hours) {
+  const h = Math.floor(hours);
+  const m = Math.floor((hours - h) * 60);
+  const s = Math.round(((hours - h) * 60 - m) * 60);
+  return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+function updateBikePlus() {
+  const speed = parseFloat(bikePlusSpeed.value);
+
+  const time90 = 90 / speed;
+  const time180 = 180 / speed;
+
+  bikePlus90.textContent = formatTime(time90);
+  bikePlus180.textContent = formatTime(time180);
+}
+
+bikePlusSpeed.addEventListener("input", e => {
+  bikePlusSlider.value = e.target.value;
+  updateBikePlus();
+});
+
+bikePlusSlider.addEventListener("input", e => {
+  bikePlusSpeed.value = e.target.value;
+  updateBikePlus();
+});
+
+updateBikePlus();
+
