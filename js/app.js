@@ -162,24 +162,33 @@ function initRunLogic() {
   el("runSlider").addEventListener("input", updateSlider);
 
   updateRun();
-}
-function formatTime(hours) {
+
+function bikeFormatTime(hours) {
   const h = Math.floor(hours);
   const m = Math.floor((hours - h) * 60);
   const s = Math.round(((hours - h) * 60 - m) * 60);
   return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 
+function bikePaceFromSpeed(speed) {
+  const sec = 3600 / speed; // sekundy na 1 km
+  const m = Math.floor(sec / 60);
+  const s = Math.round(sec % 60);
+  return `${m}:${String(s).padStart(2,'0')} / km`;
+}
+
 function updateBikePlus() {
   const speed = parseFloat(bikePlusSpeed.value);
 
-  const time90 = 90 / speed;
-  const time180 = 180 / speed;
+  // Výstupy
+  b90.textContent = bikeFormatTime(90 / speed);
+  b180.textContent = bikeFormatTime(180 / speed);
 
-  bikePlus90.textContent = formatTime(time90);
-  bikePlus180.textContent = formatTime(time180);
+  // Tempo
+  bikePlusPace.textContent = bikePaceFromSpeed(speed);
 }
 
+// Synchronizace input ↔ slider
 bikePlusSpeed.addEventListener("input", e => {
   bikePlusSlider.value = e.target.value;
   updateBikePlus();
@@ -192,3 +201,4 @@ bikePlusSlider.addEventListener("input", e => {
 
 updateBikePlus();
 
+}

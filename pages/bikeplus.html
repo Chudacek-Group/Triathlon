@@ -1,19 +1,28 @@
 <h1>Bike+</h1>
-<div class="card" id="bikePlusCard">
-  <div class="row">
-    <div>
-      <label>Průměrná rychlost (km/h)</label>
-      <input id="bikePlusSpeed" type="number" value="32">
-    </div>
-    <div>
-      <label>Rychlost</label>
-      <input id="bikePlusSlider" type="range" min="20" max="50" step="0.5" value="32">
-    </div>
+
+<div class="card run-layout">
+
+  <!-- LEVÁ STRANA – výsledky -->
+  <div class="run-left time">
+    <div>90 km: <b id="b90"></b></div>
+    <div>180 km: <b id="b180"></b></div>
   </div>
 
-  <div class="time">
-    90 km: <span id="bikePlus90"></span><br>
-    180 km: <span id="bikePlus180"></span>
+  <!-- PRAVÁ STRANA – rychlost + vertikální slider -->
+  <div class="run-right">
+      <label for="bikePlusSpeed">Rychlost (km/h)</label>
+      <input id="bikePlusSpeed" type="number" value="32" class="pace-display">
+
+      <div class="speed-box">
+        <div>Tempo</div>
+        <b id="bikePlusPace">1:52 / km</b>
+      </div>
+
+      <div class="vslider-wrap">
+        <input id="bikePlusSlider" type="range" min="20" max="50" step="0.5" value="32" class="vslider">
+      </div>
   </div>
+
 </div>
+
 
