@@ -7,6 +7,7 @@ function loadPage(name) {
 
       if (name === "race") initRaceLogic();
       if (name === "runplus") initRunLogic();
+	  if (name === "bikeplus") initBikePlusLogic();
     });
 }
 
@@ -162,43 +163,43 @@ function initRunLogic() {
   el("runSlider").addEventListener("input", updateSlider);
 
   updateRun();
-
-function bikeFormatTime(hours) {
-  const h = Math.floor(hours);
-  const m = Math.floor((hours - h) * 60);
-  const s = Math.round(((hours - h) * 60 - m) * 60);
-  return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  
 }
 
-function bikePaceFromSpeed(speed) {
-  const sec = 3600 / speed; // sekundy na 1 km
-  const m = Math.floor(sec / 60);
-  const s = Math.round(sec % 60);
-  return `${m}:${String(s).padStart(2,'0')} / km`;
-}
+function initBikePlusLogic() {
+  const el = id => document.getElementById(id);
 
-function updateBikePlus() {
-  const speed = parseFloat(bikePlusSpeed.value);
+  function bikeFormatTime(hours) {
+    const h = Math.floor(hours);
+    const m = Math.floor((hours - h) * 60);
+    const s = Math.round(((hours - h) * 60 - m) * 60);
+    return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }
 
-  // Výstupy
-  b90.textContent = bikeFormatTime(90 / speed);
-  b180.textContent = bikeFormatTime(180 / speed);
+  function bikePaceFromSpeed(speed) {
+    const sec = 3600 / speed;
+    const m = Math.floor(sec / 60);
+    const s = Math.round(sec % 60);
+    return `${m}:${String(s).padStart(2,'0')} / km`;
+  }
 
-  // Tempo
-  bikePlusPace.textContent = bikePaceFromSpeed(speed);
-}
+  function updateBikePlus() {
+    const speed = parseFloat(el("bikePlusSpeed").value);
 
-// Synchronizace input ↔ slider
-bikePlusSpeed.addEventListener("input", e => {
-  bikePlusSlider.value = e.target.value;
+    el("b90").textContent = bikeFormatTime(90 / speed);
+    el("b180").textContent = bikeFormatTime(180 / speed);
+    el("bikePlusPace").textContent = bikePaceFromSpeed(speed);
+  }
+
+  el("bikePlusSpeed").addEventListener("input", e => {
+    el("bikePlusSlider").value = e.target.value;
+    updateBikePlus();
+  });
+
+  el("bikePlusSlider").addEventListener("input", e => {
+    el("bikePlusSpeed").value = e.target.value;
+    updateBikePlus();
+  });
+
   updateBikePlus();
-});
-
-bikePlusSlider.addEventListener("input", e => {
-  bikePlusSpeed.value = e.target.value;
-  updateBikePlus();
-});
-
-updateBikePlus();
-
 }
